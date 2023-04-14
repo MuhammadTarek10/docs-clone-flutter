@@ -1,27 +1,24 @@
+import 'package:docs/config/routes.dart';
 import 'package:docs/features/auth/data/repositories/auth_repository.dart';
-import 'package:docs/features/docs/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 
 class LoginView extends ConsumerWidget {
   const LoginView({super.key});
 
   void signInWithGoogle(WidgetRef ref, BuildContext context) async {
-    final messenger = ScaffoldMessenger.of(context);
-    final navigator = Navigator.of(context);
+    final snackbar = ScaffoldMessenger.of(context);
+    final navigator = Routemaster.of(context);
     final user = await ref.read(authRepositoryProvider).signInWithGoogle();
     if (user != null) {
       ref.read(userProvider.notifier).update((state) => user);
-      messenger.showSnackBar(
+      snackbar.showSnackBar(
         const SnackBar(
           content: Text("Logged In"),
         ),
       );
-      navigator.pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const HomeView(),
-        ),
-      );
+      navigator.replace(Routes.homeRoute);
     }
   }
 

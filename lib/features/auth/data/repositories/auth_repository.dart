@@ -53,7 +53,7 @@ class AuthRepository {
               uid: jsonDecode(res.body)['user']['_id'],
               token: jsonDecode(res.body)['token'],
             );
-            _localStorage.setToken(newUser.token!);
+            _localStorage.setToken(newUser.token);
             return newUser;
         }
       }

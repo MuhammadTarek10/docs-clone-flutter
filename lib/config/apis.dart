@@ -13,5 +13,10 @@ class Apis {
   };
   static const String base = "http://localhost:3001";
   static const String login = "$base/auth/login";
-  static const String getData = "$base/auth/";
+  static const String getData = "$base/auth";
+
+  static const String docs = "$base/docs";
+  static const String createDocument = "$docs/create";
+  static const String updateDocumentTitle = "$docs/title";
+  static const String getAllDocuments = "$docs/me";
 }
